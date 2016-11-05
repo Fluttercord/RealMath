@@ -33,16 +33,20 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FloatMatrixExtension.cs" />
-    <Compile Include="DoubleMatrixExtension.cs" />
-    <Compile Include="FloatVectorExtension.cs" />
-    <Compile Include="DoubleVectorExtension.cs" />
-    <Compile Include="FloatMatrix.cs" />
-    <Compile Include="DoubleMatrix.cs" />
-    <Compile Include="FloatVector.cs" />
-    <Compile Include="DoubleVector.cs" />
-    <Compile Include="FloatArrayExtension.cs" />
-    <Compile Include="DoubleArrayExtension.cs" />
+    <Compile Include="FloatType\MatrixExtension.cs" />
+    <Compile Include="FloatType\VectorExtension.cs" />
+    <Compile Include="FloatType\Matrix.cs" />
+    <Compile Include="FloatType\Vector.cs" />
+    <Compile Include="FloatType\ArrayExtension.cs" />
+    <Compile Include="FloatType\VectorTransformation.cs" />
+    <Compile Include="Polynomial\InterpolationNode.cs" />
+    <Compile Include="Polynomial\Condition.cs" />
+    <Compile Include="Polynomial\FloatInterpolationChain.cs" />
+    <Compile Include="Polynomial\InterpolationChain.cs" />
+    <Compile Include="Polynomial\PolynomialInterpolation.cs" />
+    <Compile Include="Polynomial\PolynomialDerivatives.cs" />
+    <Compile Include="Polynomial\VectorInterpolation.cs" />
+    <Compile Include="Polynomial\VectorInterpolationChain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

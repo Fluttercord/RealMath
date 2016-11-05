@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace RealMath
+namespace RealMath.FloatType
 {
-    public partial struct FloatMatrix : IEquatable<FloatMatrix>
+    public partial struct Matrix : IEquatable<Matrix>
     {
         private readonly float[,] _elements;
         private readonly bool _isQuadratic;
@@ -41,7 +41,7 @@ namespace RealMath
         /// </summary>
         /// <param name="rowsCount">Количество строк</param>
         /// <param name="columnsCount">Количество столбцов</param>
-        public FloatMatrix(int rowsCount, int columnsCount)
+        public Matrix(int rowsCount, int columnsCount)
         {
             if (rowsCount <= 0)
                 throw new ArgumentException("rowsCount");
@@ -60,7 +60,7 @@ namespace RealMath
         /// Создает экземпляр по массиву элементов
         /// </summary>
         /// <param name="elements">Массив элементов</param>
-        public FloatMatrix(float[,] elements)
+        public Matrix(float[,] elements)
         {
             int rowsCount = elements.GetLength(0);
             if (rowsCount <= 0)
@@ -81,7 +81,7 @@ namespace RealMath
         /// Создает экземпляр по заданной матрице
         /// </summary>
         /// <param name="sample">Шаблон</param>
-        public FloatMatrix(FloatMatrix sample)
+        public Matrix(Matrix sample)
             : this(sample.RowsCount, sample.ColumnsCount)
         {
             for (int i = 0; i < sample.RowsCount; i++)
@@ -95,7 +95,7 @@ namespace RealMath
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        public static FloatMatrix operator +(FloatMatrix a, FloatMatrix b)
+        public static Matrix operator +(Matrix a, Matrix b)
         {
             if (a.RowsCount != b.RowsCount)
                 throw new InvalidOperationException();
@@ -107,7 +107,7 @@ namespace RealMath
             for (int i = 0; i < resultRowsCount; i++)
                 for (int j = 0; j < resultColumnsCount; j++)
                     x[i, j] = a[i, j] + b[i, j];
-            return new FloatMatrix(x);
+            return new Matrix(x);
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace RealMath
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        public static FloatMatrix operator -(FloatMatrix a, FloatMatrix b)
+        public static Matrix operator -(Matrix a, Matrix b)
         {
             if (a.RowsCount != b.RowsCount)
                 throw new InvalidOperationException();
@@ -128,7 +128,7 @@ namespace RealMath
             for (int i = 0; i < resultRowsCount; i++)
                 for (int j = 0; j < resultColumnsCount; j++)
                     x[i, j] = a[i, j] - b[i, j];
-            return new FloatMatrix(x);
+            return new Matrix(x);
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace RealMath
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        public static FloatMatrix operator *(FloatMatrix a, FloatMatrix b)
+        public static Matrix operator *(Matrix a, Matrix b)
         {
             if (a.ColumnsCount != b.RowsCount)
                 throw new InvalidOperationException();
@@ -148,7 +148,7 @@ namespace RealMath
                 for (int j = 0; j < resultColumnsCount; j++)
                     for (int k = 0; k < a.ColumnsCount; k++)
                         x[i, j] += a[i, k] * b[k, j];
-            return new FloatMatrix(x);
+            return new Matrix(x);
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace RealMath
         /// <param name="a"></param>
         /// <param name="k"></param>
         /// <returns></returns>
-        public static FloatMatrix operator *(FloatMatrix a, float k)
+        public static Matrix operator *(Matrix a, float k)
         {
             int resultRowsCount = a.RowsCount;
             int resultColumnsCount = a.ColumnsCount;
@@ -165,7 +165,7 @@ namespace RealMath
             for (int i = 0; i < resultRowsCount; i++)
                 for (int j = 0; j < resultColumnsCount; j++)
                     x[i, j] = a[i, j] * k;
-            return new FloatMatrix(x);
+            return new Matrix(x);
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace RealMath
         /// <param name="a"></param>
         /// <param name="k"></param>
         /// <returns></returns>
-        public static FloatMatrix operator /(FloatMatrix a, float k)
+        public static Matrix operator /(Matrix a, float k)
         {
             int resultRowsCount = a.RowsCount;
             int resultColumnsCount = a.ColumnsCount;
@@ -182,7 +182,7 @@ namespace RealMath
             for (int i = 0; i < resultRowsCount; i++)
                 for (int j = 0; j < resultColumnsCount; j++)
                     x[i, j] = a[i, j] / k;
-            return new FloatMatrix(x);
+            return new Matrix(x);
         }
 
         /// <summary>
@@ -208,7 +208,7 @@ namespace RealMath
         /// Возвращает новый экземпляр, представляющий транспонированную матрицу
         /// </summary>
         /// <returns></returns>
-        public FloatMatrix GetTransposed()
+        public Matrix GetTransposed()
         {
             int resultRowsCount = ColumnsCount;
             int resultColumnsCount = RowsCount;
@@ -216,7 +216,7 @@ namespace RealMath
             for (int i = 0; i < resultRowsCount; i++)
                 for (int j = 0; j < resultColumnsCount; j++)
                     x[i, j] = _elements[j, i];
-            return new FloatMatrix(x);
+            return new Matrix(x);
         }
 
         /// <summary>
@@ -244,7 +244,7 @@ namespace RealMath
         /// Возвращает новый экземпляр, представляющий матрицу алгебраических дополнений
         /// </summary>
         /// <returns></returns>
-        public FloatMatrix GetAlgAddonMatrix()
+        public Matrix GetAlgAddonMatrix()
         {
             if (!_isQuadratic)
                 throw new InvalidOperationException("rowsCount != columnsCount");
@@ -254,14 +254,14 @@ namespace RealMath
             for (int i = 0; i < RowsCount; i++)
                 for (int j = 0; j < ColumnsCount; j++)
                     x[i, j] = _elements.GetAlgAddon(i, j);
-            return new FloatMatrix(x);
+            return new Matrix(x);
         }
 
         /// <summary>
         /// Возвращает новый экземпляр, представляющий обратную матрицу
         /// </summary>
         /// <returns></returns>
-        public FloatMatrix GetInverted()
+        public Matrix GetInverted()
         {
             if (!_isQuadratic)
                 throw new InvalidOperationException("rowsCount != columnsCount");
@@ -274,7 +274,7 @@ namespace RealMath
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             if (_determinant == 0d)
                 throw new InvalidOperationException();
-            return new FloatMatrix(_elements.GetInverted(_determinant, _firstColumnAlgAddons));
+            return new Matrix(_elements.GetInverted(_determinant, _firstColumnAlgAddons));
         }
 
         /// <summary>
@@ -296,12 +296,12 @@ namespace RealMath
         /// </summary>
         /// <param name="size">Размер</param>
         /// <returns></returns>
-        public static FloatMatrix GetUnit(int size)
+        public static Matrix GetUnit(int size)
         {
             float[,] x = new float[size, size];
             for (int i = 0; i < size; i++)
                 x[i, i] = 1;
-            return new FloatMatrix(x);
+            return new Matrix(x);
         }
 
         /// <summary>
@@ -309,7 +309,7 @@ namespace RealMath
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        public bool Equals(FloatMatrix other)
+        public bool Equals(Matrix other)
         {
             if (RowsCount != other.RowsCount)
                 return false;

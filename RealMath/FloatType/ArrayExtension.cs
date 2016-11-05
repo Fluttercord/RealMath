@@ -1,6 +1,8 @@
-﻿namespace RealMath
+﻿using System;
+
+namespace RealMath.FloatType
 {
-    static class FloatArrayExtension
+    static class ArrayExtension
     {
         public static float GetDeterminant(this float[,] matrix, out float[] firstColumnAlgAddons)
         {

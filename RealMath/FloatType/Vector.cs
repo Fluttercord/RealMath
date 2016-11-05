@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace RealMath
+namespace RealMath.FloatType
 {
-    public partial struct FloatVector : IEquatable<FloatVector>
+    public partial struct Vector : IEquatable<Vector>
     {
         private readonly float[] _elements;
 
@@ -22,7 +22,7 @@ namespace RealMath
         /// Создает экземпляр заданной размерности. Все координаты будут равны нулю
         /// </summary>
         /// <param name="size">Число измерений</param>
-        public FloatVector(int size)
+        public Vector(int size)
         {
             if (size < 0)
                 throw new ArgumentException("size");
@@ -34,7 +34,7 @@ namespace RealMath
         /// Создает экземпляр по заданному вектору
         /// </summary>
         /// <param name="sample">Шаблон</param>
-        public FloatVector(FloatVector sample)
+        public Vector(Vector sample)
             : this(sample.Size)
         {
             for (int i = 0; i < sample.Size; i++)
@@ -45,7 +45,7 @@ namespace RealMath
         /// Создает экземпляр по массиву координат размерности длины массива.
         /// </summary>
         /// <param name="elements">Массив координат</param>
-        public FloatVector(params float[] elements)
+        public Vector(params float[] elements)
         {
             int size = elements.Length;
             if (size <= 0)
@@ -60,7 +60,7 @@ namespace RealMath
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        public static FloatVector operator +(FloatVector a, FloatVector b)
+        public static Vector operator +(Vector a, Vector b)
         {
             if (a.Size != b.Size)
                 throw new InvalidOperationException();
@@ -68,7 +68,7 @@ namespace RealMath
             float[] x = new float[resultSize];
             for (int i = 0; i < resultSize; i++)
                 x[i] = a[i] + b[i];
-            return new FloatVector(x);
+            return new Vector(x);
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace RealMath
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        public static FloatVector operator -(FloatVector a, FloatVector b)
+        public static Vector operator -(Vector a, Vector b)
         {
             if (a.Size != b.Size)
                 throw new InvalidOperationException();
@@ -85,7 +85,7 @@ namespace RealMath
             float[] x = new float[resultSize];
             for (int i = 0; i < resultSize; i++)
                 x[i] = a[i] - b[i];
-            return new FloatVector(x);
+            return new Vector(x);
         }
 
         /// <summary>
@@ -94,13 +94,13 @@ namespace RealMath
         /// <param name="a"></param>
         /// <param name="k"></param>
         /// <returns></returns>
-        public static FloatVector operator *(FloatVector a, float k)
+        public static Vector operator *(Vector a, float k)
         {
             int resultSize = a.Size;
             float[] x = new float[resultSize];
             for (int i = 0; i < resultSize; i++)
                 x[i] = a[i] * k;
-            return new FloatVector(x);
+            return new Vector(x);
         }
 
         /// <summary>
@@ -109,13 +109,13 @@ namespace RealMath
         /// <param name="a"></param>
         /// <param name="k"></param>
         /// <returns></returns>
-        public static FloatVector operator /(FloatVector a, float k)
+        public static Vector operator /(Vector a, float k)
         {
             int resultSize = a.Size;
             float[] x = new float[resultSize];
             for (int i = 0; i < resultSize; i++)
                 x[i] = a[i] / k;
-            return new FloatVector(x);
+            return new Vector(x);
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace RealMath
         /// </summary>
         /// <param name="index">Индекс исключаемой координаты</param>
         /// <returns></returns>
-        public FloatVector GetVectorWithExcluded(int index)
+        public Vector GetVectorWithExcluded(int index)
         {
             if ((index < 0) || (index >= Size))
                 throw new InvalidOperationException();
@@ -146,7 +146,7 @@ namespace RealMath
                 int offset = i >= index ? 1 : 0;
                 x[i] = _elements[i + offset];
             }
-            return new FloatVector(x);
+            return new Vector(x);
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace RealMath
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        public bool Equals(FloatVector other)
+        public bool Equals(Vector other)
         {
             if (Size != other.Size)
                 return false;
