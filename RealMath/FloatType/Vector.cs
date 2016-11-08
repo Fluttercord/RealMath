@@ -2,7 +2,7 @@
 
 namespace RealMath.FloatType
 {
-    public partial struct Vector : IEquatable<Vector>
+    public class Vector : IEquatable<Vector>
     {
         private readonly float[] _elements;
 
@@ -128,25 +128,6 @@ namespace RealMath.FloatType
             for (int i = 0; i < Size; i++)
                 result += _elements[i] * _elements[i];
             return (float)Math.Sqrt(result);
-        }
-
-        /// <summary>
-        /// Возвращает новый экземпляр, размерность которого на единицу меньше, исключая координату по заданному индексу.
-        /// </summary>
-        /// <param name="index">Индекс исключаемой координаты</param>
-        /// <returns></returns>
-        public Vector GetVectorWithExcluded(int index)
-        {
-            if ((index < 0) || (index >= Size))
-                throw new InvalidOperationException();
-            int resultSize = Size - 1;
-            float[] x = new float[resultSize];
-            for (int i = 0; i < resultSize; i++)
-            {
-                int offset = i >= index ? 1 : 0;
-                x[i] = _elements[i + offset];
-            }
-            return new Vector(x);
         }
 
         /// <summary>

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RealMath.FloatType
+﻿namespace RealMath.FloatType
 {
     static class ArrayExtension
     {
@@ -56,13 +54,14 @@ namespace RealMath.FloatType
             return result;
         }
 
-        public static float[,] GetTransposed(this float[,] matrix)
+        public static T[,] GetTransposed<T>(this T[,] matrix)
         {
-            int size = matrix.GetLength(0);
-            float[,] result = new float[size, size];
-            for (int i = 0; i < size; i++)
-                for (int j = 0; j < size; j++)
-                    result[i, j] = matrix[j, i];
+            int width = matrix.GetLength(0);
+            int height = matrix.GetLength(1);
+            T[,] result = new T[height, width];
+            for (int i = 0; i < width; i++)
+                for (int j = 0; j < height; j++)
+                    result[j, i] = matrix[i, j];
             return result;
         }
 

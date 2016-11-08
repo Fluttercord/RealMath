@@ -2,7 +2,7 @@
 
 namespace RealMath.FloatType
 {
-    public partial struct Matrix : IEquatable<Matrix>
+    public class Matrix : IEquatable<Matrix>
     {
         private readonly float[,] _elements;
         private readonly bool _isQuadratic;
