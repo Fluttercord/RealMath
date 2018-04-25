@@ -7,8 +7,8 @@
     <ProjectGuid>{78AF5140-7D94-4361-868A-6CE7246D24AF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RealMath</RootNamespace>
-    <AssemblyName>RealMath</AssemblyName>
+    <RootNamespace>RyujiMath</RootNamespace>
+    <AssemblyName>RyujiMath</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

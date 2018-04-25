@@ -1,4 +1,4 @@
-﻿namespace RealMath.FloatType
+﻿namespace RyujiMath.FloatType
 {
 	static class ArrayExtension
 	{

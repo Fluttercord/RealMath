@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RealMath.FloatType
+namespace RyujiMath.FloatType
 {
 	public class VectorTransformation
 	{
