@@ -34,10 +34,10 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FloatType\Matrix.cs" />
-    <Compile Include="FloatType\Vector.cs" />
-    <Compile Include="FloatType\ArrayExtension.cs" />
-    <Compile Include="FloatType\VectorTransformation.cs" />
+    <Compile Include="Matrix.cs" />
+    <Compile Include="Vector.cs" />
+    <Compile Include="ArrayExtension.cs" />
+    <Compile Include="VectorTransformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
